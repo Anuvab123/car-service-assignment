@@ -35,3 +35,16 @@ Complimentary Cleaning: If the total service bill exceeds ₹ 10000, a complimen
 2. Follow the prompts to enter the car type and service codes for the requested services.
 3. The software will calculate the total bill and generate a detailed bill.
 4. If the total bill is more than ₹ 10000, the bill will specify that a complimentary cleaning service is provided.
+
+# Implementation:
+The software is implemented using object-oriented programming principles in Java. It consists of the following classes:
+
+1. Car: Represents a car with its type.
+2. Service: Represents a service with its code and prices for different car types.
+3. CarServiceStation: Represents the car service station and provides methods for adding cars, services, and generating bills.
+4. The Main class contains the main method and demonstrates the usage of the car service station software. It creates car objects, service objects, sets the 5.prices for services based on car type, adds cars and services to the car service station, and generates a bill for a specific car and requested services.
+
+# Contributing:
+Contributions to the car service station software are welcome. If you have any suggestions or improvements, please feel free to open an issue or submit a pull request.
+
+![Screenshot (72)](https://github.com/Anuvab123/car-service-assignment/assets/112776528/fdeadd5d-49ad-486a-be38-90cdb4dee295)
