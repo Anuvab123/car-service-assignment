@@ -3,12 +3,15 @@ This software is designed for a car service station to manage service requests a
 
 # Features:
 Car Types: The car service station caters to three types of cars - Hatchback, Sedan, and SUV.
+
 Services: The software provides the following types of services:
+
 Basic Service
 Engine Fixing
 Clutch Fixing
 Gear Fixing
 Brake Fixing
+
 Service Codes and Prices: Each service is associated with a service code and has different prices based on the type of car.
 Service Code - Service - Hatchback Price - Sedan Price - SUV Price
 BS01 - Basic Servicing - ₹ 2000 - ₹ 4000 - ₹ 5000
