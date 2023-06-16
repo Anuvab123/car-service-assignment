@@ -1,0 +1,162 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+// Car class represents a car with its type
+class Car {
+    private String type;
+
+    public Car(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+}
+
+// Service class represents a service with its code and price
+class Service {
+    private String code;
+    private Map<String, Integer> prices;  // Map to store prices based on car type
+
+    public Service(String code) {
+        this.code = code;
+        prices = new HashMap<>();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setPrice(String carType, int price) {
+        prices.put(carType, price);
+    }
+
+    public int getPrice(String carType) {
+        return prices.getOrDefault(carType, 0);
+    }
+}
+
+// CarServiceStation class represents the car service station
+class CarServiceStation {
+    private List<Car> cars;
+    private List<Service> services;
+
+    public CarServiceStation() {
+        cars = new ArrayList<>();
+        services = new ArrayList<>();
+    }
+
+    public void addCar(Car car) {
+        cars.add(car);
+    }
+
+    public void addService(Service service) {
+        services.add(service);
+    }
+
+    public int calculateTotalBill(Car car, List<String> serviceCodes) {
+        int totalBill = 0;
+        for (String code : serviceCodes) {
+            Service service = getServiceByCode(code);
+            if (service != null) {
+                int price = service.getPrice(car.getType());
+                totalBill += price;
+            }
+        }
+        return totalBill;
+    }
+
+    public void generateBill(Car car, List<String> serviceCodes) {
+        int totalBill = calculateTotalBill(car, serviceCodes);
+
+        System.out.println("Type of Car: " + car.getType());
+        System.out.println("Service Requested:");
+        for (String code : serviceCodes) {
+            Service service = getServiceByCode(code);
+            if (service != null) {
+                int price = service.getPrice(car.getType());
+                System.out.println("- " + service.getCode() + ": ₹ " + price);
+            }
+        }
+
+        System.out.println("Total Bill: ₹ " + totalBill);
+        if (totalBill > 10000) {
+            System.out.println("Complimentary Cleaning Provided");
+        }
+    }
+
+    private Service getServiceByCode(String code) {
+        for (Service service : services) {
+            if (service.getCode().equals(code)) {
+                return service;
+            }
+        }
+        return null;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create car service station
+        CarServiceStation serviceStation = new CarServiceStation();
+
+        // Create car objects
+        Car hatchbackCar = new Car("Hatchback");
+        Car sedanCar = new Car("Sedan");
+        Car suvCar = new Car("SUV");
+
+        // Add cars to the service station
+        serviceStation.addCar(hatchbackCar);
+        serviceStation.addCar(sedanCar);
+        serviceStation.addCar(suvCar);
+
+        // Create service objects
+        Service basicService = new Service("BS01");
+        Service engineFixing = new Service("EF01");
+        Service clutchFixing = new Service("CF01");
+        Service brakeFixing = new Service("BF01");
+        Service gearFixing = new Service("GF01");
+
+        // Set prices for services based on car type
+        basicService.setPrice("Hatchback", 2000);
+        basicService.setPrice("Sedan", 4000);
+        basicService.setPrice("SUV", 5000);
+
+        engineFixing.setPrice("Hatchback", 5000);
+        engineFixing.setPrice("Sedan", 8000);
+        engineFixing.setPrice("SUV", 10000);
+
+        clutchFixing.setPrice("Hatchback", 2000);
+        clutchFixing.setPrice("Sedan", 4000);
+        clutchFixing.setPrice("SUV", 6000);
+
+        brakeFixing.setPrice("Hatchback", 1000);
+        brakeFixing.setPrice("Sedan", 1500);
+        brakeFixing.setPrice("SUV", 2500);
+
+        gearFixing.setPrice("Hatchback", 3000);
+        gearFixing.setPrice("Sedan", 6000);
+        gearFixing.setPrice("SUV", 8000);
+
+        // Add services to the service station
+        serviceStation.addService(basicService);
+        serviceStation.addService(engineFixing);
+        serviceStation.addService(clutchFixing);
+        serviceStation.addService(brakeFixing);
+        serviceStation.addService(gearFixing);
+
+        // Example usage
+        Car car = hatchbackCar;
+        List<String> serviceCodes = new ArrayList<>();
+        serviceCodes.add("BS01");
+        serviceCodes.add("EF01");
+        serviceCodes.add("GF01");
+        serviceCodes.add("CF01");
+
+
+        serviceStation.generateBill(car, serviceCodes);
+    }
+}
