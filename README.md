@@ -1,7 +1,7 @@
 # Car Service Station Software:
 This software is designed for a car service station to manage service requests and generate detailed bills for different types of cars and services provided. It is implemented using object-oriented programming principles in Java.
 
-#Features:
+# Features:
 Car Types: The car service station caters to three types of cars - Hatchback, Sedan, and SUV.
 Services: The software provides the following types of services:
 Basic Service
